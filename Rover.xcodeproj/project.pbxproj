@@ -12,6 +12,12 @@
 		9DE7D6811E4E26CF004CBBD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE7D6761E4E26CF004CBBD8 /* Main.storyboard */; };
 		9DE7D6831E4E26CF004CBBD8 /* DMNRoverAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D67B1E4E26CF004CBBD8 /* DMNRoverAppDelegate.m */; };
 		9DE7D6841E4E26CF004CBBD8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D67C1E4E26CF004CBBD8 /* main.m */; };
+		9DE7D68E1E4E2947004CBBD8 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DE7D68D1E4E2947004CBBD8 /* APIKeys.plist */; };
+		9DE7D6921E4E296F004CBBD8 /* DMNMarsRoverClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D6911E4E296F004CBBD8 /* DMNMarsRoverClient.m */; };
+		9DE7D6951E4E2AAC004CBBD8 /* DMNMarsRover.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D6941E4E2AAC004CBBD8 /* DMNMarsRover.m */; };
+		9DE7D6981E4E2B59004CBBD8 /* DMNMarsPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D6971E4E2B59004CBBD8 /* DMNMarsPhoto.m */; };
+		9DE7D69B1E4E2B66004CBBD8 /* DMNSolDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D69A1E4E2B66004CBBD8 /* DMNSolDescription.m */; };
+		9DE7D69E1E4E30C1004CBBD8 /* DMNPhotoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D69D1E4E30C1004CBBD8 /* DMNPhotoCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +29,17 @@
 		9DE7D67A1E4E26CF004CBBD8 /* DMNRoverAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNRoverAppDelegate.h; sourceTree = "<group>"; };
 		9DE7D67B1E4E26CF004CBBD8 /* DMNRoverAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNRoverAppDelegate.m; sourceTree = "<group>"; };
 		9DE7D67C1E4E26CF004CBBD8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9DE7D68D1E4E2947004CBBD8 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
+		9DE7D6901E4E296F004CBBD8 /* DMNMarsRoverClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNMarsRoverClient.h; sourceTree = "<group>"; };
+		9DE7D6911E4E296F004CBBD8 /* DMNMarsRoverClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNMarsRoverClient.m; sourceTree = "<group>"; };
+		9DE7D6931E4E2AAC004CBBD8 /* DMNMarsRover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNMarsRover.h; sourceTree = "<group>"; };
+		9DE7D6941E4E2AAC004CBBD8 /* DMNMarsRover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNMarsRover.m; sourceTree = "<group>"; };
+		9DE7D6961E4E2B59004CBBD8 /* DMNMarsPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNMarsPhoto.h; sourceTree = "<group>"; };
+		9DE7D6971E4E2B59004CBBD8 /* DMNMarsPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNMarsPhoto.m; sourceTree = "<group>"; };
+		9DE7D6991E4E2B66004CBBD8 /* DMNSolDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNSolDescription.h; sourceTree = "<group>"; };
+		9DE7D69A1E4E2B66004CBBD8 /* DMNSolDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNSolDescription.m; sourceTree = "<group>"; };
+		9DE7D69C1E4E30C1004CBBD8 /* DMNPhotoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNPhotoCache.h; sourceTree = "<group>"; };
+		9DE7D69D1E4E30C1004CBBD8 /* DMNPhotoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNPhotoCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +76,7 @@
 				9DE7D6861E4E26D8004CBBD8 /* Storyboards */,
 				9DE7D6731E4E26CF004CBBD8 /* Assets.xcassets */,
 				9DE7D6781E4E26CF004CBBD8 /* Info.plist */,
+				9DE7D68D1E4E2947004CBBD8 /* APIKeys.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -72,6 +90,7 @@
 				9DE7D68B1E4E2705004CBBD8 /* Model Controllers */,
 				9DE7D68C1E4E2705004CBBD8 /* View Controllers */,
 				9DE7D6891E4E2702004CBBD8 /* Views */,
+				9DE7D68F1E4E2958004CBBD8 /* Networking */,
 				9DE7D6871E4E26E7004CBBD8 /* Supporting Files */,
 			);
 			path = Sources;
@@ -104,6 +123,14 @@
 		9DE7D68A1E4E2704004CBBD8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9DE7D6931E4E2AAC004CBBD8 /* DMNMarsRover.h */,
+				9DE7D6941E4E2AAC004CBBD8 /* DMNMarsRover.m */,
+				9DE7D6961E4E2B59004CBBD8 /* DMNMarsPhoto.h */,
+				9DE7D6971E4E2B59004CBBD8 /* DMNMarsPhoto.m */,
+				9DE7D6991E4E2B66004CBBD8 /* DMNSolDescription.h */,
+				9DE7D69A1E4E2B66004CBBD8 /* DMNSolDescription.m */,
+				9DE7D69C1E4E30C1004CBBD8 /* DMNPhotoCache.h */,
+				9DE7D69D1E4E30C1004CBBD8 /* DMNPhotoCache.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -120,6 +147,15 @@
 			children = (
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		9DE7D68F1E4E2958004CBBD8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9DE7D6901E4E296F004CBBD8 /* DMNMarsRoverClient.h */,
+				9DE7D6911E4E296F004CBBD8 /* DMNMarsRoverClient.m */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DE7D6811E4E26CF004CBBD8 /* Main.storyboard in Resources */,
+				9DE7D68E1E4E2947004CBBD8 /* APIKeys.plist in Resources */,
 				9DE7D67F1E4E26CF004CBBD8 /* Assets.xcassets in Resources */,
 				9DE7D6801E4E26CF004CBBD8 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -195,8 +232,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DE7D6921E4E296F004CBBD8 /* DMNMarsRoverClient.m in Sources */,
+				9DE7D6951E4E2AAC004CBBD8 /* DMNMarsRover.m in Sources */,
 				9DE7D6841E4E26CF004CBBD8 /* main.m in Sources */,
+				9DE7D69B1E4E2B66004CBBD8 /* DMNSolDescription.m in Sources */,
 				9DE7D6831E4E26CF004CBBD8 /* DMNRoverAppDelegate.m in Sources */,
+				9DE7D69E1E4E30C1004CBBD8 /* DMNPhotoCache.m in Sources */,
+				9DE7D6981E4E2B59004CBBD8 /* DMNMarsPhoto.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
