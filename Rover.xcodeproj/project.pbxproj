@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D7CB6961E53C7EE00AFCD8A /* DMNRoversCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CB6951E53C7EE00AFCD8A /* DMNRoversCollectionViewController.m */; };
-		9D7CB6991E53C80300AFCD8A /* DMNRoverCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CB6981E53C80300AFCD8A /* DMNRoverCollectionViewCell.m */; };
 		9DE7D67F1E4E26CF004CBBD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DE7D6731E4E26CF004CBBD8 /* Assets.xcassets */; };
 		9DE7D6801E4E26CF004CBBD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE7D6741E4E26CF004CBBD8 /* LaunchScreen.storyboard */; };
 		9DE7D6811E4E26CF004CBBD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE7D6761E4E26CF004CBBD8 /* Main.storyboard */; };
@@ -20,13 +18,10 @@
 		9DE7D6981E4E2B59004CBBD8 /* DMNMarsPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D6971E4E2B59004CBBD8 /* DMNMarsPhoto.m */; };
 		9DE7D69B1E4E2B66004CBBD8 /* DMNSolDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D69A1E4E2B66004CBBD8 /* DMNSolDescription.m */; };
 		9DE7D69E1E4E30C1004CBBD8 /* DMNPhotoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D69D1E4E30C1004CBBD8 /* DMNPhotoCache.m */; };
+		9DF138581E56481F00AF0400 /* DMNRoversTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF138571E56481F00AF0400 /* DMNRoversTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9D7CB6941E53C7EE00AFCD8A /* DMNRoversCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNRoversCollectionViewController.h; sourceTree = "<group>"; };
-		9D7CB6951E53C7EE00AFCD8A /* DMNRoversCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNRoversCollectionViewController.m; sourceTree = "<group>"; };
-		9D7CB6971E53C80300AFCD8A /* DMNRoverCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNRoverCollectionViewCell.h; sourceTree = "<group>"; };
-		9D7CB6981E53C80300AFCD8A /* DMNRoverCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNRoverCollectionViewCell.m; sourceTree = "<group>"; };
 		9DE7D6581E4E26AC004CBBD8 /* Rover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE7D6731E4E26CF004CBBD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DE7D6751E4E26CF004CBBD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -46,6 +41,8 @@
 		9DE7D69A1E4E2B66004CBBD8 /* DMNSolDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNSolDescription.m; sourceTree = "<group>"; };
 		9DE7D69C1E4E30C1004CBBD8 /* DMNPhotoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNPhotoCache.h; sourceTree = "<group>"; };
 		9DE7D69D1E4E30C1004CBBD8 /* DMNPhotoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNPhotoCache.m; sourceTree = "<group>"; };
+		9DF138561E56481F00AF0400 /* DMNRoversTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNRoversTableViewController.h; sourceTree = "<group>"; };
+		9DF138571E56481F00AF0400 /* DMNRoversTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNRoversTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +119,6 @@
 		9DE7D6891E4E2702004CBBD8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9D7CB6971E53C80300AFCD8A /* DMNRoverCollectionViewCell.h */,
-				9D7CB6981E53C80300AFCD8A /* DMNRoverCollectionViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -153,8 +148,8 @@
 		9DE7D68C1E4E2705004CBBD8 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9D7CB6941E53C7EE00AFCD8A /* DMNRoversCollectionViewController.h */,
-				9D7CB6951E53C7EE00AFCD8A /* DMNRoversCollectionViewController.m */,
+				9DF138561E56481F00AF0400 /* DMNRoversTableViewController.h */,
+				9DF138571E56481F00AF0400 /* DMNRoversTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -195,7 +190,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DMN;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = DevMountain;
 				TargetAttributes = {
 					9DE7D6571E4E26AC004CBBD8 = {
@@ -243,14 +238,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DE7D6921E4E296F004CBBD8 /* DMNMarsRoverClient.m in Sources */,
-				9D7CB6961E53C7EE00AFCD8A /* DMNRoversCollectionViewController.m in Sources */,
 				9DE7D6951E4E2AAC004CBBD8 /* DMNMarsRover.m in Sources */,
 				9DE7D6841E4E26CF004CBBD8 /* main.m in Sources */,
-				9D7CB6991E53C80300AFCD8A /* DMNRoverCollectionViewCell.m in Sources */,
 				9DE7D69B1E4E2B66004CBBD8 /* DMNSolDescription.m in Sources */,
 				9DE7D6831E4E26CF004CBBD8 /* DMNRoverAppDelegate.m in Sources */,
 				9DE7D69E1E4E30C1004CBBD8 /* DMNPhotoCache.m in Sources */,
 				9DE7D6981E4E2B59004CBBD8 /* DMNMarsPhoto.m in Sources */,
+				9DF138581E56481F00AF0400 /* DMNRoversTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +288,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -342,6 +337,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

@@ -14,6 +14,38 @@
 
 #pragma mark - Public
 
+- (void)fetchMarsRoversWithCompletion:(void(^)(NSArray *rovers, NSError *error))completion
+{
+	NSURL *url = [[self class] roversEndpoint];
+	[[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+		if (error) {
+			return completion(nil, error);
+		}
+		
+		if (!data) {
+			return completion(nil, [NSError errorWithDomain:@"com.DevMountain.Rover.ErrorDomain" code:-1 userInfo:nil]);
+		}
+		
+		NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+		NSArray *roverDicts = nil;
+		if (!jsonDict || ![jsonDict isKindOfClass:[NSDictionary class]] ||
+			!(roverDicts = jsonDict[@"rovers"])) {
+			NSDictionary *userInfo = nil;
+			if (error) { userInfo = @{NSUnderlyingErrorKey : error}; }
+			NSError *localError = [NSError errorWithDomain:@"com.DevMountain.Rover.ErrorDomain" code:-1 userInfo:userInfo];
+			return completion(nil, localError);
+		}
+		
+		NSMutableArray *rovers = [NSMutableArray array];
+		for (NSDictionary *dict in roverDicts) {
+			DMNMarsRover *rover = [[DMNMarsRover alloc] initWithDictionary:dict];
+			if (rover) { [rovers addObject:rover]; }
+		}
+		
+		completion(rovers, nil);
+	}] resume];
+}
+
 - (void)fetchMarsRoverNamed:(NSString *)name completion:(void (^)(DMNMarsRover *, NSError *))completion
 {
 	NSURL *url = [[self class] urlForInfoForRover:name];
@@ -97,6 +129,14 @@
 + (NSURL *)baseURL
 {
 	return [NSURL URLWithString:@"https://api.nasa.gov/mars-photos/api/v1"];
+}
+
++ (NSURL *)roversEndpoint
+{
+	NSURL *url = [[self baseURL] URLByAppendingPathComponent:@"rovers"];
+	NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
+	urlComponents.queryItems = @[[NSURLQueryItem queryItemWithName:@"api_key" value:[self apiKey]]];
+	return urlComponents.URL;
 }
 
 + (NSURL *)urlForInfoForRover:(NSString *)roverName

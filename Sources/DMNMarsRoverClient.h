@@ -12,6 +12,7 @@
 
 @interface DMNMarsRoverClient : NSObject
 
+- (void)fetchMarsRoversWithCompletion:(void(^)(NSArray *rovers, NSError *error))completion;
 - (void)fetchMarsRoverNamed:(NSString *)name completion:(void(^)(DMNMarsRover *rover, NSError *error))completion;
 - (void)fetchPhotosFromRover:(DMNMarsRover *)rover onSol:(NSInteger)sol completion:(void(^)(NSArray *photos, NSError *error))completion;
 

@@ -19,13 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	DMNMarsRoverClient *client = [[DMNMarsRoverClient alloc] init];
-	[client fetchMarsRoverNamed:@"curiosity" completion:^(DMNMarsRover *rover, NSError *error) {
-		NSLog(@"Rover: %@", rover);
-		[client fetchPhotosFromRover:rover onSol:0 completion:^(NSArray *photos, NSError *error) {
-			NSLog(@"photos: %@", photos);
-		}];
-	}];
 	return YES;
 }
 
