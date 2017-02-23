@@ -9,6 +9,7 @@
 #import "DMNSolsTableViewController.h"
 #import "DMNMarsRover.h"
 #import "DMNSolDescription.h"
+#import "DMNPhotosCollectionViewController.h"
 
 @interface DMNSolsTableViewController ()
 
@@ -33,6 +34,18 @@
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ Photos", @(sol.numberOfPhotos)];
 	
     return cell;
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"ShowPhotosSegue"]) {
+		DMNPhotosCollectionViewController *destVC = segue.destinationViewController;
+		destVC.rover = self.rover;
+		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+		destVC.sol = self.rover.solDescriptions[indexPath.row];
+	}
 }
 
 

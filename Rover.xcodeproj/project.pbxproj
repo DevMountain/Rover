@@ -20,6 +20,8 @@
 		9DE7D69E1E4E30C1004CBBD8 /* DMNPhotoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D69D1E4E30C1004CBBD8 /* DMNPhotoCache.m */; };
 		9DF138581E56481F00AF0400 /* DMNRoversTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF138571E56481F00AF0400 /* DMNRoversTableViewController.m */; };
 		9DF138601E5F56D300AF0400 /* DMNSolsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF1385F1E5F56D300AF0400 /* DMNSolsTableViewController.m */; };
+		9DF138631E5F62E800AF0400 /* DMNPhotosCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF138621E5F62E800AF0400 /* DMNPhotosCollectionViewController.m */; };
+		9DF138661E5F6B9100AF0400 /* DMNPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF138651E5F6B9100AF0400 /* DMNPhotoCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,10 @@
 		9DF138571E56481F00AF0400 /* DMNRoversTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNRoversTableViewController.m; sourceTree = "<group>"; };
 		9DF1385E1E5F56D300AF0400 /* DMNSolsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNSolsTableViewController.h; sourceTree = "<group>"; };
 		9DF1385F1E5F56D300AF0400 /* DMNSolsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNSolsTableViewController.m; sourceTree = "<group>"; };
+		9DF138611E5F62E800AF0400 /* DMNPhotosCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNPhotosCollectionViewController.h; sourceTree = "<group>"; };
+		9DF138621E5F62E800AF0400 /* DMNPhotosCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNPhotosCollectionViewController.m; sourceTree = "<group>"; };
+		9DF138641E5F6B9100AF0400 /* DMNPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		9DF138651E5F6B9100AF0400 /* DMNPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,8 @@
 		9DE7D6891E4E2702004CBBD8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9DF138641E5F6B9100AF0400 /* DMNPhotoCollectionViewCell.h */,
+				9DF138651E5F6B9100AF0400 /* DMNPhotoCollectionViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -155,6 +163,8 @@
 				9DF138571E56481F00AF0400 /* DMNRoversTableViewController.m */,
 				9DF1385E1E5F56D300AF0400 /* DMNSolsTableViewController.h */,
 				9DF1385F1E5F56D300AF0400 /* DMNSolsTableViewController.m */,
+				9DF138611E5F62E800AF0400 /* DMNPhotosCollectionViewController.h */,
+				9DF138621E5F62E800AF0400 /* DMNPhotosCollectionViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -244,9 +254,11 @@
 			files = (
 				9DE7D6921E4E296F004CBBD8 /* DMNMarsRoverClient.m in Sources */,
 				9DE7D6951E4E2AAC004CBBD8 /* DMNMarsRover.m in Sources */,
+				9DF138661E5F6B9100AF0400 /* DMNPhotoCollectionViewCell.m in Sources */,
 				9DE7D6841E4E26CF004CBBD8 /* main.m in Sources */,
 				9DE7D69B1E4E2B66004CBBD8 /* DMNSolDescription.m in Sources */,
 				9DE7D6831E4E26CF004CBBD8 /* DMNRoverAppDelegate.m in Sources */,
+				9DF138631E5F62E800AF0400 /* DMNPhotosCollectionViewController.m in Sources */,
 				9DE7D69E1E4E30C1004CBBD8 /* DMNPhotoCache.m in Sources */,
 				9DF138601E5F56D300AF0400 /* DMNSolsTableViewController.m in Sources */,
 				9DE7D6981E4E2B59004CBBD8 /* DMNMarsPhoto.m in Sources */,
