@@ -9,10 +9,11 @@
 #import "DMNRoversTableViewController.h"
 #import "DMNMarsRover.h"
 #import "DMNMarsRoverClient.h"
+#import "DMNSolsTableViewController.h"
 
 @interface DMNRoversTableViewController ()
 
-@property (nonatomic, strong) NSArray *rovers;
+@property (nonatomic, copy) NSArray *rovers;
 
 @end
 
@@ -22,15 +23,40 @@
 {
 	[super viewDidLoad];
 	
+	NSMutableArray *rovers = [NSMutableArray array];
+	dispatch_group_t group = dispatch_group_create();
+
+	dispatch_group_enter(group);
 	DMNMarsRoverClient *client = [[DMNMarsRoverClient alloc] init];
-	[client fetchMarsRoversWithCompletion:^(NSArray *rovers, NSError *error) {
+	[client fetchAllMarsRoversWithCompletion:^(NSArray *roverNames, NSError *error) {
 		if (error) {
-			NSLog(@"Error fetching info for mars rovers: %@", error);
+			NSLog(@"Error fetching list of mars rovers: %@", error);
 			return;
 		}
 		
-		self.rovers = rovers;
+		dispatch_queue_t resultsQueue = dispatch_queue_create("com.devmountain.roverFetchResultsQueue", 0);
+		
+		for (NSString *name in roverNames) {
+			dispatch_group_enter(group);
+			[client fetchMissionManifestForRoverNamed:name completion:^(DMNMarsRover *rover, NSError *error) {
+				if (error) {
+					NSLog(@"Error fetching list of mars rovers: %@", error);
+					dispatch_group_leave(group);
+					return;
+				}
+				
+				dispatch_async(resultsQueue, ^{
+					[rovers addObject:rover];
+					dispatch_group_leave(group);
+				});
+			}];
+		}
+		
+		dispatch_group_leave(group);
 	}];
+	
+	dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+	self.rovers = rovers;
 }
 
 #pragma mark - Table view data source
@@ -53,7 +79,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	
+	if ([segue.identifier isEqualToString:@"ShowSolsSegue"]) {
+		DMNSolsTableViewController *destinationVC = segue.destinationViewController;
+		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+		destinationVC.rover = self.rovers[indexPath.row];
+	}
 }
 
 #pragma mark - Properties
@@ -61,7 +91,7 @@
 - (void)setRovers:(NSArray *)rovers
 {
 	if (rovers != _rovers) {
-		_rovers = rovers;
+		_rovers = [rovers copy];
 		[self.tableView reloadData];
 	}
 }

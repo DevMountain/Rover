@@ -14,7 +14,7 @@
 
 #pragma mark - Public
 
-- (void)fetchMarsRoversWithCompletion:(void(^)(NSArray *rovers, NSError *error))completion
+- (void)fetchAllMarsRoversWithCompletion:(void(^)(NSArray *roverNames, NSError *error))completion
 {
 	NSURL *url = [[self class] roversEndpoint];
 	[[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -36,17 +36,17 @@
 			return completion(nil, localError);
 		}
 		
-		NSMutableArray *rovers = [NSMutableArray array];
+		NSMutableArray *roverNames = [NSMutableArray array];
 		for (NSDictionary *dict in roverDicts) {
-			DMNMarsRover *rover = [[DMNMarsRover alloc] initWithDictionary:dict];
-			if (rover) { [rovers addObject:rover]; }
+			NSString *name = dict[@"name"];
+			if (name) { [roverNames addObject:name]; }
 		}
 		
-		completion(rovers, nil);
+		completion(roverNames, nil);
 	}] resume];
 }
 
-- (void)fetchMarsRoverNamed:(NSString *)name completion:(void (^)(DMNMarsRover *, NSError *))completion
+- (void)fetchMissionManifestForRoverNamed:(NSString *)name completion:(void(^)(DMNMarsRover *rover, NSError *error))completion;
 {
 	NSURL *url = [[self class] urlForInfoForRover:name];
 	[[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

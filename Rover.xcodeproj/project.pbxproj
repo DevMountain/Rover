@@ -19,6 +19,7 @@
 		9DE7D69B1E4E2B66004CBBD8 /* DMNSolDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D69A1E4E2B66004CBBD8 /* DMNSolDescription.m */; };
 		9DE7D69E1E4E30C1004CBBD8 /* DMNPhotoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE7D69D1E4E30C1004CBBD8 /* DMNPhotoCache.m */; };
 		9DF138581E56481F00AF0400 /* DMNRoversTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF138571E56481F00AF0400 /* DMNRoversTableViewController.m */; };
+		9DF138601E5F56D300AF0400 /* DMNSolsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF1385F1E5F56D300AF0400 /* DMNSolsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		9DE7D69D1E4E30C1004CBBD8 /* DMNPhotoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNPhotoCache.m; sourceTree = "<group>"; };
 		9DF138561E56481F00AF0400 /* DMNRoversTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNRoversTableViewController.h; sourceTree = "<group>"; };
 		9DF138571E56481F00AF0400 /* DMNRoversTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNRoversTableViewController.m; sourceTree = "<group>"; };
+		9DF1385E1E5F56D300AF0400 /* DMNSolsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNSolsTableViewController.h; sourceTree = "<group>"; };
+		9DF1385F1E5F56D300AF0400 /* DMNSolsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNSolsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 			children = (
 				9DF138561E56481F00AF0400 /* DMNRoversTableViewController.h */,
 				9DF138571E56481F00AF0400 /* DMNRoversTableViewController.m */,
+				9DF1385E1E5F56D300AF0400 /* DMNSolsTableViewController.h */,
+				9DF1385F1E5F56D300AF0400 /* DMNSolsTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				9DE7D69B1E4E2B66004CBBD8 /* DMNSolDescription.m in Sources */,
 				9DE7D6831E4E26CF004CBBD8 /* DMNRoverAppDelegate.m in Sources */,
 				9DE7D69E1E4E30C1004CBBD8 /* DMNPhotoCache.m in Sources */,
+				9DF138601E5F56D300AF0400 /* DMNSolsTableViewController.m in Sources */,
 				9DE7D6981E4E2B59004CBBD8 /* DMNMarsPhoto.m in Sources */,
 				9DF138581E56481F00AF0400 /* DMNRoversTableViewController.m in Sources */,
 			);
