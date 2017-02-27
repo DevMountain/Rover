@@ -12,6 +12,7 @@
 #import "DMNMarsPhoto.h"
 #import "DMNPhotoCollectionViewCell.h"
 #import "DMNPhotoCache.h"
+#import "Rover-Swift.h"
 
 @interface DMNPhotosCollectionViewController ()
 
@@ -96,6 +97,17 @@ static NSString * const reuseIdentifier = @"PhotoCell";
 	}];
 	
     return cell;
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"PhotoDetailSegue"]) {
+		PhotoDetailViewController *detailVC = segue.destinationViewController;
+		NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems] firstObject];
+		detailVC.photo = self.photoReferences[indexPath.row];
+	}
 }
 
 #pragma mark - Properties
