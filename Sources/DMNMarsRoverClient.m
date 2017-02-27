@@ -108,6 +108,25 @@
 	}] resume];
 }
 
+- (void)fetchImageDataForPhoto:(DMNMarsPhoto *)photo completion:(void(^)(NSData *imageData, NSError *error))completion
+{
+	NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:photo.imageURL resolvingAgainstBaseURL:YES];
+	urlComponents.scheme = @"https";
+	NSURL *imageURL = urlComponents.URL;
+	
+	[[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+		if (error) {
+			return completion(nil, error);
+		}
+		
+		if (!data) {
+			return completion(nil, [NSError errorWithDomain:@"com.DevMountain.Rover.ErrorDomain" code:-1 userInfo:nil]);
+		}
+		
+		completion(data, nil);
+	}] resume];
+}
+
 #pragma mark - Private
 
 + (NSString *)apiKey

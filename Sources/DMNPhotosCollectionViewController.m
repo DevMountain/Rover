@@ -11,9 +11,11 @@
 #import "DMNMarsRoverClient.h"
 #import "DMNMarsPhoto.h"
 #import "DMNPhotoCollectionViewCell.h"
+#import "DMNPhotoCache.h"
 
 @interface DMNPhotosCollectionViewController ()
 
+@property (nonatomic, strong, readonly) DMNMarsRoverClient *client;
 @property (nonatomic, copy) NSArray *photoReferences;
 
 @end
@@ -43,8 +45,9 @@ static NSString * const reuseIdentifier = @"PhotoCell";
 			NSLog(@"Error getting photo references for %@ on %@: %@", self.rover, self.sol, error);
 			return;
 		}
-		
-		self.photoReferences = photos;
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.photoReferences = photos;
+		});
 	}];
 }
 
@@ -64,44 +67,47 @@ static NSString * const reuseIdentifier = @"PhotoCell";
 {
     DMNPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 	
-	UIImage *image = [UIImage imageNamed:@"MarsPlaceholder"];
-	cell.imageView.image = image;
+	DMNMarsPhoto *photo = self.photoReferences[indexPath.row];
+	
+	DMNPhotoCache *cache = [DMNPhotoCache sharedCache];
+	NSData *cachedData = [cache imageDataForIdentifier:photo.identifier];
+	if (cachedData) {
+		cell.imageView.image = [UIImage imageWithData:cachedData];
+		return cell;
+	} else {
+		cell.imageView.image = [UIImage imageNamed:@"MarsPlaceholder"];
+	}
+	
+	[self.client fetchImageDataForPhoto:photo completion:^(NSData *imageData, NSError *error) {
+		if (error || !imageData) {
+			NSLog(@"Error fetching image data for %@: %@", photo, error);
+			return;
+		}
+		
+		[cache cacheImageData:imageData forIdentifier:photo.identifier];
+		UIImage *image = [UIImage imageWithData:imageData];
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if (![indexPath isEqual:[collectionView indexPathForCell:cell]]) {
+				return; // Cell has been reused for another photo
+			}
+			cell.imageView.image = image;
+		});
+	}];
 	
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
-
 #pragma mark - Properties
+
+@synthesize client = _client;
+- (DMNMarsRoverClient *)client
+{
+	if (!_client) {
+		_client = [[DMNMarsRoverClient alloc] init];
+	}
+	return _client;
+}
 
 - (void)setRover:(DMNMarsRover *)rover
 {

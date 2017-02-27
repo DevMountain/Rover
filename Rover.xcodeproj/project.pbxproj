@@ -143,8 +143,6 @@
 				9DE7D6971E4E2B59004CBBD8 /* DMNMarsPhoto.m */,
 				9DE7D6991E4E2B66004CBBD8 /* DMNSolDescription.h */,
 				9DE7D69A1E4E2B66004CBBD8 /* DMNSolDescription.m */,
-				9DE7D69C1E4E30C1004CBBD8 /* DMNPhotoCache.h */,
-				9DE7D69D1E4E30C1004CBBD8 /* DMNPhotoCache.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -152,6 +150,8 @@
 		9DE7D68B1E4E2705004CBBD8 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9DE7D69C1E4E30C1004CBBD8 /* DMNPhotoCache.h */,
+				9DE7D69D1E4E30C1004CBBD8 /* DMNPhotoCache.m */,
 			);
 			name = "Model Controllers";
 			sourceTree = "<group>";

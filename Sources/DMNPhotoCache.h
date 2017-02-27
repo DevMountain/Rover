@@ -10,7 +10,7 @@
 
 @interface DMNPhotoCache : NSObject
 
-+ (instancetype)sharedCache;
+@property (nonatomic, readonly, class) DMNPhotoCache *sharedCache;
 
 - (void)cacheImageData:(NSData *)data forIdentifier:(NSInteger)identifier;
 - (NSData *)imageDataForIdentifier:(NSInteger)identifier;

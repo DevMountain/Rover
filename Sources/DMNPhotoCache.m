@@ -31,6 +31,7 @@
 	self = [super init];
 	if (self) {
 		_cache = [[NSCache alloc] init];
+		_cache.name = @"com.DevMountain.MarsRover.PhotosCache";
 	}
 	return self;
 }

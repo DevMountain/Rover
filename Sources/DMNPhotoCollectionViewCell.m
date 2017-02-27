@@ -10,4 +10,11 @@
 
 @implementation DMNPhotoCollectionViewCell
 
+- (void)prepareForReuse
+{
+	[super prepareForReuse];
+	
+	self.imageView.image = [UIImage imageNamed:@"MarsPlaceholder"];
+}
+
 @end
