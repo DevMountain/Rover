@@ -56,6 +56,7 @@ Create a new Cocoa Touch subclass of `NSObject`called `MarsRoverClient` with a t
 
 #### MarsRoverClient.h:
 In the header file, create four method signatures:
+
 1. `fetchAllMarsRoversWithCompletion` has a completion block as a parameter that returns an array of rover names, and an error.
 2. `fetchMissionManifestForRoverNamed` takes in a string and has a completion block that returns an instance of your rover model, and an error
 3. `fetchPhotosFromRover` that takes in an instance of your rover model, which sol you want photos for, and a completion block that returns an array of photos, and an error.
