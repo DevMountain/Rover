@@ -72,7 +72,7 @@ Take the time to look through the documentation for the API [here](https://api.n
 
 In the .m file, add the following private **class** methods:
 
-* Copy and paste this snippet. There is a file called APIKeys.plist that should be in your project if you cloned the repo. This contains the API key for NASA's API, and returns it to you as an instance of `NSString`.
+* Copy and paste this snippet. There is a file called APIKeys.plist that should be in your project if you cloned the repo. This contains the API key for NASA's API, and returns it to you as an instance of `NSString`. There is an APIKeys.plist file in your project. Go to NASA's API documentation [here](https://api.nasa.gov/#live_example) and go through the process to get an API key. Once you're done, add the API key to the plist file as the value, and make the key `"APIKey"`. You will use this in the client later.
 
 ``` swift
 + (NSString *)apiKey {
