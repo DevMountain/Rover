@@ -37,7 +37,7 @@ class PhotoDetailViewController: UIViewController {
 		} else {
 			client.fetchImageData(for: photo) { (data, error) in
 				if error != nil || data == nil {
-					NSLog("Error fetching photo for: \(error)")
+					NSLog("Error fetching photo for: \(String(describing: error))")
 					return
 				}
 				
