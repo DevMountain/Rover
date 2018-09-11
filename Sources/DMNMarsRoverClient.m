@@ -154,7 +154,7 @@
 {
 	NSURL *url = [[self baseURL] URLByAppendingPathComponent:@"rovers"];
 	NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
-	urlComponents.queryItems = @[[NSURLQueryItem queryItemWithName:@"api_key" value:[self apiKey]]];
+	urlComponents.queryItems = @[[NSURLQueryItem queryItemWithName:@"api_key" value:@"IEfGWhrH90YBMK7dzT4ekpwVd1CPqo7OmCo3oOKT"]];
 	return urlComponents.URL;
 }
 
@@ -165,7 +165,7 @@
 	url = [url URLByAppendingPathComponent:roverName];
 	
 	NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
-	urlComponents.queryItems = @[[NSURLQueryItem queryItemWithName:@"api_key" value:[self apiKey]]];
+	urlComponents.queryItems = @[[NSURLQueryItem queryItemWithName:@"api_key" value: @"IEfGWhrH90YBMK7dzT4ekpwVd1CPqo7OmCo3oOKT"]];
 	return urlComponents.URL;
 }
 
@@ -178,7 +178,7 @@
 	
 	NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
 	urlComponents.queryItems = @[[NSURLQueryItem queryItemWithName:@"sol" value:[@(sol) stringValue]],
-								 [NSURLQueryItem queryItemWithName:@"api_key" value:[self apiKey]]];
+                                 [NSURLQueryItem queryItemWithName:@"api_key" value: @"IEfGWhrH90YBMK7dzT4ekpwVd1CPqo7OmCo3oOKT"]];
 	return urlComponents.URL;
 }
 
