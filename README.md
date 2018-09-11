@@ -131,6 +131,11 @@ At this point, you should be able to run the app and be able to select a rover f
 
 ### PhotosCollectionViewController:
 
+### What you'll build. This screen will go trough 4 phases.
+
+![screen shot 2018-09-11 at 5 10 15 pm](https://user-images.githubusercontent.com/23179585/45392642-9d89eb80-b5e5-11e8-9bd8-399427a84de7.png)
+![seconde](https://user-images.githubusercontent.com/23179585/45392685-cd38f380-b5e5-11e8-8487-4ffb4164df3b.png)
+
 You will set up the collection view controller to display thumbnail images of each photo taken on the sol passed into it. 
 
 * Create two private properties:
