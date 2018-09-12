@@ -13,13 +13,26 @@ Please note and be aware that parts of these instructions are intentionally vagu
 
 ## Part One - Model Objects and Mars Rover Client
 
+Take the time to look through the documentation for the API [here](https://api.nasa.gov/api.html#MarsPhotos). It will be essential that you can navigate and know how to find the information needed from the API throughout the project, again as the instructions are intentionally vague.
+
+There is a file called APIKeys.plist that should be in your project if you cloned the repo. This contains the API key for NASA's API, and returns it to you as an instance of `NSString`. There is an APIKeys.plist file in your project. Go to NASA's API documentation [here](https://api.nasa.gov/#live_example) and go through the process to get an API key. Once you're done, add the API key to the plist file as the value, and make the key `"APIKey"`. You will use this in the client later.
+
+Use your API Key and what you learned from exploring NASA's API documentation to make various sample requests through a web browser or HTTP Client (e.g. Postman or Paw).  The following endpoints may be helpful in searching the API.  (You will have to add your API KEY onto each of these as a query parameter in order to recieve data.)
+
+*The Base API URL (returns no data on its own):  [https://api.nasa.gov/mars-photos/api/v1?api_key={YOUR API KEY}](https://api.nasa.gov/mars-photos/api/v1)
+*The list of mars rovers: [https://api.nasa.gov/mars-photos/api/v1/rovers?api_key={YOUR API KEY}](https://api.nasa.gov/mars-photos/api/v1/rovers)]
+*A list of sol objects for a given rover:  https://api.nasa.gov/mars-photos/api/v1/manifests/{ROVER NAME}?api_key={YOUR API KEY}  [Example](https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity)
+*A list of photo objects for a given martian sol and rover:  https://api.nasa.gov/mars-photos/api/v1/rovers/{ROVER NAME}/photos?sol={NUMBER OF The SOL}&api_key={YOUR API KEY} [Example](https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=4)]
+
+Each of these endpoints will provide you with the basis of one of you model objects.  Each will require its own fetch functions.  You should familiarize yourself with the structure of the json of each query.
+
 #### Models Objects:
 You will need three model objects in this project. First, a model representing a Mars rover, second, a photo that a rover took, and third, a description of each [sol](https://en.wikipedia.org/wiki/Timekeeping_on_Mars#Sols).
 
 
 Create a new Cocoa Touch subclass of `NSObject` for each of these three model objects.
 
-* Add properties for the following model objects: 
+* Add properties for the following model objects.  Use the json trees above to determine the type of each property.  Assume all properties should be nonatomic and readonly: 
 
 * **Rover**:
 * Name of the rover
@@ -27,11 +40,9 @@ Create a new Cocoa Touch subclass of `NSObject` for each of these three model ob
 * Landing date
 * The max sol that represents the most recent sol that photos exist for the rover
 * The max date (on Earth) that the photos exist for the rover 
-* The status of the rover. Make an enum ( `NS_ENUM` ) representing either active or complete. Follow standard naming convention for `NS_ENUM`s.
+* The status of the rover. Make an enum ( `NS_ENUM` ) representing either active or complete. Follow standard naming convention for `NS_ENUM`s. See [this](https://nshipster.com/ns_enum-ns_options/) for a good introduction to NS_ENUM syntax.
 * The number of photos taken by the rover
 * An array of sol descriptions
-  
-
 
 * **Photo**:
 * The photo's identifier
@@ -45,9 +56,9 @@ Create a new Cocoa Touch subclass of `NSObject` for each of these three model ob
 * The amount of photos taken during the sol
 * An array of cameras as strings
 
-* On the photo model, you will have to add the Objective-C equivalent of the Equatable Protocol using the method `isEqual`
+* On the photo model, you will have to add the Objective-C equivalent of the Equatable Protocol using the method `isEqual`.  This will simply be an instance function which returns a bool by comparingthe imageURL of the photo object you pass into the function to the url of self (the instance the function is called on).
 
-* Think about where we're getting the data from, and create an appropriate initializer for each model object.
+* Think about where we're getting the data from, and create an appropriate initializer for each model object.   *Hint: Everything returned in JSON is contained in an Array or a __Dictionary__. You will need to reference the JSON for each model's respective endpoint heavily to create these initializers.
 ___
 
 ### Mars Rover Client:
@@ -55,7 +66,7 @@ ___
 Create a new Cocoa Touch subclass of `NSObject`called `MarsRoverClient` with a three letter prefix at the start. This will be where we make the network calls to get the JSON from NASA's API.
 
 #### MarsRoverClient.h:
-In the header file, create four method signatures:
+In the header file, create four instance method signatures:
 
 1. `fetchAllMarsRoversWithCompletion` has a completion block as a parameter that returns an array of rover names, and an error.
 2. `fetchMissionManifestForRoverNamed` takes in a string and has a completion block that returns an instance of your rover model, and an error
@@ -66,40 +77,45 @@ Look [here](http://rypress.com/tutorials/objective-c/blocks) and [here](http://w
 
 ### MarsRoverClient.m:
 
-Take the time to look through the documentation for the API [here](https://api.nasa.gov/api.html#MarsPhotos). It will be essential that you can navigate and know how to find the information needed from the API in these next steps, again as the instructions are intentionally vague.
-
 #### Private methods:
 
 In the .m file, add the following private **class** methods:
 
-* Copy and paste this snippet. There is a file called APIKeys.plist that should be in your project if you cloned the repo. This contains the API key for NASA's API, and returns it to you as an instance of `NSString`. There is an APIKeys.plist file in your project. Go to NASA's API documentation [here](https://api.nasa.gov/#live_example) and go through the process to get an API key. Once you're done, add the API key to the plist file as the value, and make the key `"APIKey"`. You will use this in the client later.
+* Copy and paste this snippet. 
 
 ``` swift
 + (NSString *)apiKey {
-  static NSString *apiKey = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    NSURL *apiKeysURL = [[NSBundle mainBundle] URLForResource:@"APIKeys" withExtension:@"plist"];
-    if (!apiKeysURL) {
-      NSLog(@"Error! APIKeys file not found!");
-      return;
-    }
-    NSDictionary *apiKeys = [[NSDictionary alloc] initWithContentsOfURL:apiKeysURL];
-    apiKey = apiKeys[@"APIKey"];
-  });
-  return apiKey;
+static NSString *apiKey = nil;
+static dispatch_once_t onceToken;
+dispatch_once(&onceToken, ^{
+NSURL *apiKeysURL = [[NSBundle mainBundle] URLForResource:@"APIKeys" withExtension:@"plist"];
+if (!apiKeysURL) {
+NSLog(@"Error! APIKeys file not found!");
+return;
+}
+NSDictionary *apiKeys = [[NSDictionary alloc] initWithContentsOfURL:apiKeysURL];
+apiKey = apiKeys[@"APIKey"];
+});
+return apiKey;
 }
 ```
+_This class computed property will return the API key from the info plist you inserted at the beginning of the project._
 
 * Create a class method called `baseURL` that returns an instance of `NSURL` created from the base url of the API.
-* Create a class method called `URLForInfoForRover` that takes in a string called 'roverName' and returns an `NSURL` pointing to the mission manifest of the rover passed in. (hint: It should return an instance of `NSURL` created using the baseURL and the information passed in to create a more specific url pointing to the information for that mission)
-* Create a class method called urlForPhotosFromRover that takes in a string called 'roverName' and the sol that you want photos for, then like above, return a new, more specific `NSURL` pointing to the photos for the given rover and sol.  
+* Create a class method called `URLForInfoForRover` that takes in a string called 'roverName' and returns an `NSURL` pointing to the mission manifest of the rover passed in. (hint: It should return an instance of `NSURL` created using the baseURL and the information passed in to create a more specific url pointing to the information for that mission).  _Hint: You will need to construct your NSURL to access the lists of sols for a given rover endpoint mentioned at the beginning of this readme._
 
-Make sure that you add the API key as one of the query items in your urls above.
+* Create a class method called urlForPhotosFromRover that takes in a string called 'roverName' and the sol that you want photos for, then like above, return a new, more specific `NSURL` pointing to the photos for the given rover and sol.  _Hint: You will need to construct your NSURL to access the list of photo objects for a given martian sol and rover mentioned at the beginning of this readme._
+
+Make sure that you add the API key as one of the query items in both of your urls above.
 
 #### Instance methods:
 
-You will now fill out the methods that you defined in the .h file. The following four methods will all use `NSURLSession`, and follow the same steps as in Swift to take a URL, get data from it, turn it into JSON, and then turn the JSON into our model objects. Use the class methods we made above to create the URLs necessary. Refer to the NetworkController we've used in Unit 3 projects such as Representatives or Pokedex if needed. Remember to look at what each method should return through the completion block for the end goal of the method.
+You will now fill out the methods that you defined in the .h file. 
+1. `fetchAllMarsRoversWithCompletion` 
+2. `fetchMissionManifestForRoverNamed`
+3. `fetchPhotosFromRover` 
+4. `fetchImageDataForPhoto` 
+The following four methods will all use `NSURLSession`, and follow the same steps as in Swift to take a URL, get data from it, turn it into JSON, and then turn the JSON into our model objects. Since Objective-C does not have access to Swift's `Codable` protocol, we will need to follow the failable initializer method, using `[NSJSONSerialization JSONObjectWithData:]` to initialize a dictionary.  You will then need to call an initializer (which you should have written in each of your model objects) which takes in a dictionary (from the JSON) and returns an instance of the model.  Use the class methods we made above to generate the URLs necessary. Remember to look at what each method should return through the completion block for the end goal of the method.
 
 
 ## Part Two: Storyboard and Table View Controllers
@@ -108,24 +124,26 @@ You will now fill out the methods that you defined in the .h file. The following
 
 Implement the following view hierarchy in the Storyboard. As you create each scene in the storyboard, create the appropriate Cocoa Touch files for each scene. Follow standard file naming conventions.
 * The project will have a `UITableViewController` as its initial View Controller embedded in a `UINavigationController`, with a basic cell. This will show a list of the Mars Rovers.
-* From the table view cell, create a show segue that will then display a list of sols that contain photos. The cell style should be able to show which sol it is, and how many photos were taken on that sol.
+* From the table view cell, create a show segue that will then display a list of sols that contain photos. You can use a Right Detail Cell to show which sol it is, and how many photos were taken on that sol.
 * From the table view cell just created, create a show segue to a `UICollectionViewController`. The collection view's cell should have an image view that fills the whole cell. Each cell will display a preview of the sol's photos. Remember to create a Cocoa Touch file for the collection view cell as well.
 * From the collection view cell, create a show segue to a new `UIViewController` that will display a larger version of the image on the cell that you segued from, along with labels to display which camera the photo was taken with, which sol it was taken on, and the Earth date it was taken on.
 
-If you haven't already, create Cocoa Touch Files for the views and view controllers you just made in the Storyboard.
+If you haven't already, create Cocoa Touch Files for the views and view controllers you just made in the Storyboard.  Remember to subclass each of your storyboard View Controllers and Views with the proper CocoaTouchClass.
 
-### RoversTableViewController:
-* Create a private array called `rovers` that will be the data source for the table view.
-* Call the appropriate method to fetch the Mars Rovers available to display, and set the `rovers` array to the returned rovers in the completion handler.
-* Implement the `UITableViewDataSource` methods.
-* Using the prepareForSegue method, pass the appropriate information to the destination view controller. Make sure that the destination view controller has a **public** property that serves as a placeholder to put the information to.
+### RoversTableViewController.m:
+No other classes will reference properties or methods on the RoversTableViewController and therefore the .h file should be blank.
+
+* In the implementation create a private array called `rovers` that will be the data source for the table view.
+* In `ViewDidLoad` call the `fetchAllMarsRoversWithCompletion:` method to fetch the Mars Rovers available to display.  Within the closure use a for loop to loop through the rover names returned in the JSON.  Within this for loop, use each name to call `fetchMissionManifestForRoverNamed` and add the returned `Rover` obect to the `rovers` array to the returned rovers in the completion handler.  Placing a fetch function within a for loop will lead to as many fetches as there are items in the array you are looping through.  This means the app will be waiting on a large number of asyncronys call occuring on different threads.  You will need a way to determine when the last fetch function has returned its data before you move on to reloading the tableView and updating UI elements contingent upon this data retrieval.  In order to do this, you will need to use a Dispatch Group.  Please read Apple's Concurrency Programming Guide for further explanations. The section labeled [Waiting on Groups of Queued Tasks](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW25)  will be especially helpful.
+* Implement the `UITableViewDataSource` methods using the `rovers` array..
+* Using the prepareForSegue method, pass the appropriate `Rover` object to the destination view controller. Make sure that the destination view controller has a **public** _(thing "landing pad")_ property that serves as a placeholder to put the information to.
 
 ### SolsTableViewController:
 * Implement the `UITableViewDataSource` methods. (hint: Use the passed rover's solDescriptions)
-* Create a custom setter for the public rover property that checks if the rover being passed through the setter is the same as the current rover ( `_rover` ). If it isn't, then set the current rover to the one passed into the setter, and also reload the tableview. Remember that this setter is where we can do the Objective-C equivalent of a Swift `willSet` and `didSet`.
-* In the prepareForSegue, you should pass two things to the destination view controller; the rover that the SolsTableViewController got from the initial view controller's prepareForSegue, and the sol from the cell that the user just tapped on. (Again, make sure to create public properties on the destination view controller to be placeholders for these two things)
+* Create a custom setter- `setRover:` for the public rover property that checks if the rover being passed through the setter is the same as the current rover ( `_rover` ). If it isn't, then set the current rover to the one passed into the setter, and also reload the tableview. Remember that this setter is where we can do the Objective-C equivalent of a Swift `willSet` and `didSet`.
+* In the prepareForSegue, you should pass two things to the destination view controller; the rover that the SolsTableViewController got from the initial view controller's prepareForSegue, and the sol from the cell that the user just tapped on. (Again, make sure to create public properties on the destination view controller to be placeholders for these two things- i.e. two separate "landing pads")
 
-At this point, you should be able to run the app and be able to select a rover from the inital table view controller, and see a list of its sols that have photos on the table view controller that you segue to. Make sure this works before continuing.
+At this point, you should be able to run the app and be able to select a rover from the inital table view controller, and see a list of its sols with a photo count on the table view controller that you segue to. Make sure this works before continuing.
 
 ## Part Three: Collection View Controller, Cache, and Swift PhotoDetailViewController
 
