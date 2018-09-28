@@ -75,6 +75,24 @@
 	return cell;
 }
 
+// TODO - 
+//- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+//{
+//    switch (section) {
+//        case 0:
+//            return @"Rovers";
+//            break;
+//
+//        default:
+//            break;
+//    }
+//}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 120.0;
+}
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
